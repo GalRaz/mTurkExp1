@@ -24,7 +24,7 @@ var instructions_block = {
           " <p> After seeing the sequence, press any key, and you will be asked </p>" +
            " <p> to judge how likely it is that the sequence came from a random process. </p>" +
           "<p> Each sequence is independent from one another. </p>",
-    post_trial_gap: 1000
+    post_trial_gap: 1000,
     on_finish: function(){
         psiturk.finishInstructions();
     }
