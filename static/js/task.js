@@ -2,18 +2,16 @@
 var psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 var timeline = [];
-
-
-var timeline = [];
   var welcome = {
-    type: "html-button-response",
-    stimulus: "<p>Hi! Thanks so much for participating in our experiment! </p>" +
+    type: "text",
+    text: "<p>Hi! Thanks so much for participating in our experiment! </p>" +
     "This HIT is part of a MIT scientific research project. Your decision to complete this HIT is voluntary. </p>" +
     "There is no way for us to identify you. The only information we will have, in addition to your responses, </p>" +
     "is the time at which you completed the survey. The results of the research may be presented  </p>" +
     "at scientific meetings  or published in scientific journals. Clicking on the 'SUBMIT' button on the bottom of </p>" +
-    "this page indicates that you are at least 18 years of age and agree to complete this HIT voluntarily. </p>",
-    choices: ['SUBMIT'],
+    "this page indicates that you are at least 18 years of age and agree to complete this HIT voluntarily. </p>" +
+    "Press SPACE to continue",
+    cont_key: [' ']
   };
   timeline.push(welcome);
 
