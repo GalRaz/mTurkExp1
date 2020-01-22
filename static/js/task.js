@@ -25,6 +25,7 @@ var instructions_block = {
            " <p> to judge how likely it is that the sequence came from a random process. </p>" +
           "<p> Each sequence is independent from one another. </p>",
     post_trial_gap: 1000,
+    choices: jsPsych.ALL_KEYS,
     on_finish: function(){
         psiturk.finishInstructions();
     }
