@@ -4,21 +4,27 @@ var psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 var timeline = [];
 
 
-var welcome_block = {
-    type: "text",
-    text: "Welcome to the experiment. Press the SPACE key to begin.",
-    cont_key: [' ']
-};
-
-timeline.push(welcome_block);
+var timeline = [];
+  var welcome = {
+    type: "html-button-response",
+    stimulus: "<p>Hi! Thanks so much for participating in our experiment! </p>" +
+    "This HIT is part of a MIT scientific research project. Your decision to complete this HIT is voluntary. </p>" +
+    "There is no way for us to identify you. The only information we will have, in addition to your responses, </p>" +
+    "is the time at which you completed the survey. The results of the research may be presented  </p>" +
+    "at scientific meetings  or published in scientific journals. Clicking on the 'SUBMIT' button on the bottom of </p>" +
+    "this page indicates that you are at least 18 years of age and agree to complete this HIT voluntarily. </p>",
+    choices: ['SUBMIT'],
+  };
+  timeline.push(welcome);
 
 var instructions_block = {
-    type: "text",
-    text: "<p>In this experiment, a word will appear in the center " +
-        "of the screen.</p><p>When the word appears respond with the <strong>color</strong> " +
-        "in which the word is printed as quickly as you can.</p><p> press <strong>R</strong> " +
-        "for red, <strong>G</strong> for green, and <strong>B</strong> for blue.</p>" +
-        "<p>Press the SPACE key to begin.</p>",
+  type: "html-keyboard-response",
+      stimulus: "<p>This session will last for 10min.</p>" +
+          "<p> In each trial, you will see a sequence consisting A's, B's and/or C's. </p>" +
+          " <p> After seeing the sequence, press any key, and you will be asked </p>" +
+           " <p> to judge how likely it is that the sequence came from a random process. </p>" +
+          "<p> Each sequence is independent from one another. </p>",
+
     timing_post_trial: 1000,
     cont_key: [' '],
     on_finish: function(){
@@ -27,6 +33,31 @@ var instructions_block = {
 };
 
 timeline.push(instructions_block);
+
+// get data from github file
+      var data2;
+      var msg = $.ajax({type: "GET",
+      url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment/sequences.csv",
+       async: false}).responseText;
+
+      console.log(Papa.parse(msg))
+      data2 = Papa.parse(msg)
+      data2 = data2['data']
+
+      var data2 = Object.values(data2);
+      console.log(Object.values(data2[0]).toString())
+
+      var test_stimuli = []
+    function csvValues(){
+      var arrayLength = data2.length;
+        for (var i = 0; i < arrayLength; i++) {
+          test_stimuli.push({stimulus: '<div style="font-size:45px;">' +
+          Object.values(data2[i]).toString().replace(/,/g, '  ') +
+          '</div>', data: {test_part: 'test'}})
+      }
+    }
+    csvValues();
+
 
 /* stimuli specifications */
 var trials = [
