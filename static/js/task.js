@@ -17,19 +17,19 @@ var timeline = [];
   };
   timeline.push(welcome);
 
-var instructions_block = {
-  type: "html-keyboard-response",
-      stimulus: "<p>This session will last for 10min.</p>" +
-          "<p> In each trial, you will see a sequence consisting A's, B's and/or C's. </p>" +
-          " <p> After seeing the sequence, press any key, and you will be asked </p>" +
-           " <p> to judge how likely it is that the sequence came from a random process. </p>" +
-          "<p> Each sequence is independent from one another. </p>",
-    post_trial_gap: 1000,
-    choices: jsPsych.ALL_KEYS,
-    on_finish: function(){
-        psiturk.finishInstructions();
-    }
-};
+  var instructions_block = {
+      type: "text",
+      text: "<p>In this experiment, a word will appear in the center " +
+          "of the screen.</p><p>When the word appears respond with the <strong>color</strong> " +
+          "in which the word is printed as quickly as you can.</p><p> press <strong>R</strong> " +
+          "for red, <strong>G</strong> for green, and <strong>B</strong> for blue.</p>" +
+          "<p>Press the SPACE key to begin.</p>",
+      timing_post_trial: 1000,
+      cont_key: [' '],
+      on_finish: function(){
+          psiturk.finishInstructions();
+      }
+  };
 
 timeline.push(instructions_block);
 
