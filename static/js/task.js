@@ -3,15 +3,15 @@ var psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 var timeline = [];
   var welcome = {
-    type: "html-button-response",
-    stimulus: "<p>Hi! Thanks so much for participating in our experiment! </p>" +
+    type: "text",
+    text: "<p>Hi! Thanks so much for participating in our experiment! </p>" +
     "<p> This HIT is part of a MIT scientific research project. Your decision to complete this HIT is voluntary. </p>" +
     "<p> There is no way for us to identify you. The only information we will have, in addition to your responses, </p>" +
     "<p> is the time at which you completed the survey. The results of the research may be presented  </p>" +
     "<p> at scientific meetings or published in scientific journals. Clicking on the 'SUBMIT' button on the bottom of </p>" +
     "<p> this page indicates that you are at least 18 years of age and agree to complete this HIT voluntarily. </p>" +
     "<p> Press SPACE to continue </p>",
-    choices: ['S'],
+    cont_key: [' '],
   };
   timeline.push(welcome);
 
@@ -30,32 +30,6 @@ var timeline = [];
   };
 
 timeline.push(instructions_block);
-
-// get data from github file
-      var data2;
-      var msg = $.ajax({type: "GET",
-      url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment%201/sequences.csv",
-       async: false}).responseText;
-
-      console.log(Papa.parse(msg))
-      data2 = Papa.parse(msg)
-      data2 = data2['data']
-      console.log(data2)
-
-      var data2 = Object.values(data2);
-      console.log(Object.values(data2[0]).toString())
-
-      var test_stimuli = []
-      function csvValues(){
-        var arrayLength = data2.length;
-          for (var i = 0; i < arrayLength; i++) {
-            test_stimuli.push({stimulus: '<div style="font-size:45px;">' +
-            Object.values(data2[i]).toString().replace(/,/g, '  ') +
-            '</div>', data: {test_part: 'test'}})
-        }
-      }
-
-      csvValues();
 
       // sample from test_stimuli
  var symbol = {
