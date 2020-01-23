@@ -47,7 +47,7 @@ var test_stimuli = []
 function csvValues(){
 var arrayLength = data2.length;
   for (var i = 0; i < arrayLength; i++) {
-    test_stimuli.push({stimulus: '<div style="font-size:45px;">' +
+    test_stimuli.push({stimulus: '<div style="font-size:40px;">' +
     Object.values(data2[i]).toString().replace(/,/g, '  ') +
     '</div>', data: {test_part: 'test'}})
 }
@@ -57,9 +57,10 @@ csvValues();
 
       // sample from test_stimuli
  var symbol = {
-   type: "html-keyboard-response",
+   type: "single-stim",
    stimulus: jsPsych.timelineVariable('stimulus'),
    choices: jsPsych.ALL_KEYS,
+   is_html: true,
    post_trial_gap: 500,
    data: jsPsych.timelineVariable('data'),
  }
@@ -69,11 +70,23 @@ var scale_1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 var rating = {
   type: 'survey-likert',
   questions: [
-    {prompt: "<p> How likely it is that this sequence was generated from a random process (equal probability of A,B,C for each item)? </p>" +
-    "<p> Give a rating from 1 (very unlikely) to 10 (very likely) </p>", labels: scale_1, required:true}
-  ]
+    {prompt: "<p>  Give a rating from 1 (very unlikely) to 10 (very likely)  </p>", labels: scale_1, required:true}
+  ],
+  preamble: "<p> <b> How likely is it that this sequence came from a random process </p>" +
+  "<p> (equal probability of A,B,C for each item)?  </b> </p>",
+  button_label: ['Continue'],
+
 };
 
+/* define sequence procedure */
+var sequence = {
+  timeline: [symbol, rating],
+  timeline_variables: test_stimuli,
+  randomize_order: true,
+  //repetitions: 5
+}
+
+timeline.push(sequence);
 
 /* stimuli specifications */
 var trials = [
