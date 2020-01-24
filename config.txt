@@ -15,7 +15,7 @@ browser_exclude_rule = MSIE, mobile, tablet
 allow_repeats = false
 
 [Database Parameters]
-database_url = postgres://txchfhbvjvigqw:c6fea0f8f58d946313e1ab2e4d32e5271beeeb055b6ac395630f090bc94eba66@ec2-52-71-122-102.compute-1.amazonaws.com:5432/d36clq5mheh42h
+database_url = postgres://jxrlusuyejvenh:24c1733c23626258d692c8be0484e5b752883cf55511be73b6cf1342ba8ed3a6@ec2-34-193-42-173.compute-1.amazonaws.com:5432/d8sdrda9ikjt2r
 table_name = turkdemo
 
 [Server Parameters]
@@ -50,4 +50,4 @@ persistent_history_file = .psiturk_history
 #   https://<host>:<port>/ad 
 
 use_psiturk_ad_server = false
-ad_location = https://young-fortress-41697.herokuapp.com/pub
+ad_location = https://afternoon-everglades-74613.herokuapp.com/pub
