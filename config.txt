@@ -1,16 +1,16 @@
 [HIT Configuration]
-title = Stroop task
-description = Judge the color of a series of words.
+title = Sequence randomness
+description = Judge the randomness of a sequence.
 amt_keywords = Perception, Psychology
 lifetime = 24
 us_only = true
 approve_requirement = 95
 number_hits_approved = 0
 require_master_workers = false
-contact_email_on_error = youremail@gmail.com
+contact_email_on_error = mitaffect@gmail.com
 ad_group = Default psiTurk Stroop Example
-psiturk_keywords = stroop
-organization_name = New Great University
+psiturk_keywords = randomness
+organization_name = MIT
 browser_exclude_rule = MSIE, mobile, tablet
 allow_repeats = false
 
