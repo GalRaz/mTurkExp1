@@ -3,13 +3,23 @@ var psiturk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 var timeline = [];
 
+var bot_test = {
+  type: 'survey-text',
+  questions: [
+ {prompt: "<p> To check that you're not a bot: </p>" +
+ "<p> What do you see? Describe the shape & color with two words, separated by a comma. </p>", required: true}],
+ preamble: '<img src="/static/images/shape.png"></img>'
+}
+timeline.push(bot_test);
+
   var instructions_block = {
       type: "text",
       text: "<p>This session will last for 10min. </p>" +
-            "<p> In each trial, you will see a sequence consisting A's, B's and/or C's. </p>" +
+            "<p> In each trial, you will see a sequence consisting of A's, B's and/or C's. </p>" +
             " <p> After seeing the sequence, press any key, and you will be asked </p>" +
              "<p> to judge how likely it is that the sequence came from a random process. </p>" +
-            "<p> Each sequence is independent from one another. </p>",
+            "<p> You don't need to calculate anything, we simply ask for your intuitive judgments. </p>" +
+            "<p> Sequences are generated independently from each other. </p>",
       timing_post_trial: 1000,
       cont_key: [' '],
       on_finish: function(){
@@ -61,7 +71,7 @@ var rating = {
     {prompt: "<p>  Give a rating from 1 (very unlikely) to 10 (very likely)  </p>", labels: scale_1, required:true}
   ],
   preamble: "<p> <b> How likely is it that this sequence came from a random process </p>" +
-  "<p> (equal probability of A,B,C for each item)?  </b> </p>",
+  "<p>  (A, B, C are equally likely to appear in each position)?  </b> </p>",
   button_label: ['Continue'],
 
 };
