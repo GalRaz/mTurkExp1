@@ -33,8 +33,8 @@ timeline.push(bot_test);
             "<p> In each trial, you will see a sequence consisting of A's, B's and/or C's. </p>" +
             " <p> <b> After seeing the sequence, press any key, and you will be asked </p>" +
              "<p> to say how random the sequence looks to you. </b> </p>" +
-             "<p> A random sequence is one which looks like A's, B's and C's were jumbled </p>" +
-             "<p> together without any particular structure. You don't need to calculate </p>" +
+             "<p> A random sequence is one in which A's, B's and C's are equally likely </p>" +
+             "<p> to appear in each position. You don't need to calculate </p>" +
             "<p> anything, we simply ask for your intuitive judgments about how random </p>" +
             "<p> the sequences look. Sequences are independent from one another. </p>" +
             "<p> <b> Please make this window full screen so you can see the whole sequence in one row. </b> </p>",
@@ -47,7 +47,7 @@ timeline.push(instructions_block);
 
 var data2;
 var msg = $.ajax({type: "GET",
-url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment1/sequencesTest.csv",
+url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment1/sequencesExp1.csv",
  async: false}).responseText;
 
 console.log(msg)
@@ -65,6 +65,7 @@ var test_stimuli = []
 function csvValues(){
 var arrayLength = data2.length;
   for (var i = 0; i < arrayLength; i++) {
+
     test_stimuli.push({stimulus: '<div style="font-size:40px;">' +
     Object.values(data2[i]).toString().replace(/,/g, '  ') +
     '</div>', data: {test_part: 'test'}})
@@ -73,6 +74,8 @@ var arrayLength = data2.length;
 
 csvValues();
 
+var progress_bar = 0;
+var tick_amount = 0.0158;
       // sample from test_stimuli
  var symbol = {
    type: "html-keyboard-response",
@@ -80,6 +83,10 @@ csvValues();
    choices: jsPsych.ALL_KEYS,
    post_trial_gap: 500,
    data: jsPsych.timelineVariable('data'),
+   on_finish: function() {
+  progress_bar += tick_amount;
+  jsPsych.setProgressBar(progress_bar);
+}
  }
 
 var scale_1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
@@ -122,6 +129,8 @@ jsPsych.data.addProperties({
 jsPsych.init({
     display_element: 'jspsych-target',
     timeline: timeline,
+    show_progress_bar: true,
+    auto_update_progress_bar: false,
     // record data to psiTurk after each trial
     on_data_update: function(data) {
         psiturk.recordTrialData(data);
