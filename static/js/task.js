@@ -44,7 +44,7 @@ timeline.push(instructions_block);
 
 var data2;
 var msg = $.ajax({type: "GET",
-url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment1/sequencesTest.csv",
+url: "https://raw.githubusercontent.com/sradkani/CoCoSci/master/Experiment1/sequencesExp1.csv",
  async: false}).responseText;
 
 console.log(msg)
