@@ -36,7 +36,7 @@ timeline.push(bot_test);
              "<p> A random sequence is one which looks like A's, B's and C's were jumbled </p>" +
              "<p> together without any particular structure. You don't need to calculate </p>" +
             "<p> anything, we simply ask for your intuitive judgments about how random </p>" +
-            "<p> the sequences looks. Sequences are independent from one another. </p>" +
+            "<p> the sequences look. Sequences are independent from one another. </p>" +
             "<p> <b> Please make this window full screen so you can see the whole sequence in one row. </b> </p>",
       choices: ['Continue'],
       post_trial_gap: 1000,
